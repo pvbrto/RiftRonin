@@ -1,7 +1,7 @@
 ### Introdução
-- Qual a ideia principal do seu jogo?
-  O jogo é um hack and slash ambientado no Japão feudal, protagonizado por Musashi, um ronin amaldiçoado cuja lâmina altera o clima ao derramar sangue. Ele busca vingança contra o clã que destruiu sua vila, enfrentando batalhas intensas enquanto lida com as consequências climáticas de suas ações.
-- Que tipo de experiência você quer dar para o seu jogador?
-  Uma experiência imersiva, brutal e emocionalmente intensa, com ênfase em estratégia, narrativa envolvente e consequências reais das decisões do jogador.
+- Qual a ideia principal do seu jogo? <br/>
+  Rift Ronin é um jogo de ação com elementos de Hack and Slash ambientado no Japão feudal. O protagonista, Musashi, é um ronin amaldiçoado: a cada inimigo derrotado, o clima muda drasticamente, impactando diretamente o combate e a ambientação. O jogo propõe uma jornada de vingança e descoberta pessoal, com narrativa envolvente e gameplay dinâmico. <br/>
+- Que tipo de experiência você quer dar para o seu jogador? <br/>
+  Queremos proporcionar uma experiência intensa, emocional e imersiva, onde o jogador precisa lidar com escolhas morais, adaptação constante ao ambiente e batalhas desafiadoras. Cada decisão tem peso, e o destino do protagonista depende diretamente das ações do jogador.
 
     
