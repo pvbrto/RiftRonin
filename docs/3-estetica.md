@@ -39,6 +39,14 @@
 	•	Final 2: Musashi resiste, enfrentando o líder da Irmandade e morrendo em um duelo final, quebrando o ciclo da maldição com seu sacrifício.
 
 - Sentidos
-    - Quais os sentidos dos jogadores você gostaria de explorar no seu jogo?
-    - O jogo vai ter elementos visuais, sonoros, táteis, degustativos, olfativos?
-        - Como esses elementos são apresentados para o jogador?
+    - Visuais:
+	•	Cores e iluminação evoluem com o progresso da narrativa.
+	•	Cenários variam de florestas densas a vilas abandonadas, templos em ruínas e campos de batalha encharcados.
+	•	O HUD é minimalista, reforçando a imersão.
+	•	As mudanças climáticas são representadas visualmente com intensidade: trovões, nevascas, chuvas torrenciais e neblinas densas.
+
+    - Sonoros:
+	•	Trilha sonora com influência de instrumentos tradicionais japoneses (shamisen, taiko, flauta shakuhachi).
+	•	Cada região/clima possui seu tema específico (ex: tema sombrio para neblina, percussivo para tempestade).
+	•	Sons da natureza são realçados (vento, trovões, chuva, folhas, fogo).
+	•	Sons de combate são realistas, secos e impactantes.
