@@ -21,15 +21,22 @@
 
 - História
 
-    - Premissa
-        - Qual o plano de fundo do seu jogo? Onde se passa?
-        - O que deve ser contado antes do jogador assumir o controle?
-
+    - Premissa:
+	O jogo se passa em uma versão fictícia do Japão feudal. Após a destruição de sua vila, Musashi parte em uma jornada por um país devastado por guerras, confrontando não apenas inimigos humanos, mas também as forças da natureza, que ele mesmo desencadeia com sua maldição.
+       
     - Como o Jogo começa?
+	Musashi emerge das cinzas de sua vila destruída. Os primeiros passos do jogador são silenciosos, contemplativos, com o cenário transmitindo desolação. A narrativa inicial é contada por imagens e símbolos no ambiente.
+
     - Como o jogo evolui?
-        - Novas abilidades X Novos desafios
+        •	Os combates se tornam mais intensos.
+	•	As mudanças climáticas ganham novas camadas de profundidade mecânica e visual.
+	•	A narrativa se desdobra por meio de diálogos com NPCs, visões e símbolos no cenário.
+	•	Os dilemas morais tornam-se mais complexos.
+	•	O mundo ao redor muda com o personagem – mais sombrio, mais tempestuoso, mais imprevisível.
+
     - Como o jogo termina? 
-        - Quais os possíveis finais da sua história?
+        •	Final 1: Musashi aceita sua maldição e se torna o novo líder da Irmandade da Tempestade, espalhando sua força e controlando o clima como uma arma de dominação.
+	•	Final 2: Musashi resiste, enfrentando o líder da Irmandade e morrendo em um duelo final, quebrando o ciclo da maldição com seu sacrifício.
 
 - Sentidos
     - Quais os sentidos dos jogadores você gostaria de explorar no seu jogo?
