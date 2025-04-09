@@ -6,7 +6,13 @@
 ![2](https://github.com/user-attachments/assets/4f2f0b8d-92b1-4148-ae0c-2aeedcdbe1ef)
 ## Cena do jogo carregando
 ![3](https://github.com/user-attachments/assets/3e997f12-5b7a-4dd0-9826-99b6b11687c5)
-## Musashi atacando um Inimigo
+## instruções
+
+![4](https://github.com/user-attachments/assets/783a2dab-f8bc-4b4f-9dca-86ef9f2f8318)
+![5](https://github.com/user-attachments/assets/d6128f5c-47dd-4a04-8abd-5b2d89f49b2f)
+
+## Musashi atacando um Inimigo![6](https://github.com/user-attachments/assets/114b0c2b-cf68-41ff-a4e8-9fdbc3a2ef6f)
+
 ![4](https://github.com/user-attachments/assets/75a3b8ed-f6c9-4196-820a-f52d688af632)
 ## Personagem morto
 ![5](https://github.com/user-attachments/assets/a5b82e72-da64-463b-a277-1f8b7557cdd1)
