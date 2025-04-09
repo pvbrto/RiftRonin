@@ -39,13 +39,13 @@
 	•	Final 2: Musashi resiste, enfrentando o líder da Irmandade e morrendo em um duelo final, quebrando o ciclo da maldição com seu sacrifício. <br/>
 
 - Sentidos
-    - Visuais:
+    - Visuais: <br/>
 	•	Cores e iluminação evoluem com o progresso da narrativa. <br/>
 	•	Cenários variam de florestas densas a vilas abandonadas, templos em ruínas e campos de batalha encharcados. <br/>
 	•	O HUD é minimalista, reforçando a imersão. <br/>
 	•	As mudanças climáticas são representadas visualmente com intensidade: trovões, nevascas, chuvas torrenciais e neblinas densas. <br/>
 
-    - Sonoros:
+    - Sonoros: <br/>
 	•	Trilha sonora com influência de instrumentos tradicionais japoneses (shamisen, taiko, flauta shakuhachi). <br/>
 	•	Cada região/clima possui seu tema específico (ex: tema sombrio para neblina, percussivo para tempestade). <br/>
 	•	Sons da natureza são realçados (vento, trovões, chuva, folhas, fogo). <br/>
