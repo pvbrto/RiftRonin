@@ -2,9 +2,9 @@
 
 - Personagens 
     ### Protagonista – Musashi
-	•	Plano de fundo: Um ronin solitário que perdeu tudo com a destruição de sua vila por um clã desconhecido. Ao buscar vingança, descobre estar amaldiçoado: o sangue derramado por sua lâmina altera o clima ao seu redor.
-	•	Estilo visual: Musashi veste trajes típicos de um samurai errante, com elementos desgastados pela batalha. Seu visual é progressivamente alterado conforme avança na história – mais cicatrizes, roupas rasgadas, olhar cada vez mais pesado.
-	•	Características marcantes:
+	•	Plano de fundo: Um ronin solitário que perdeu tudo com a destruição de sua vila por um clã desconhecido. Ao buscar vingança, descobre estar amaldiçoado: o sangue derramado por sua lâmina altera o clima ao seu redor. <br/>
+	•	Estilo visual: Musashi veste trajes típicos de um samurai errante, com elementos desgastados pela batalha. Seu visual é progressivamente alterado conforme avança na história – mais cicatrizes, roupas rasgadas, olhar cada vez mais pesado. <br/>
+	•	Características marcantes: 
 	•	Habilidade com espada (katana)
 	•	Postura firme e silenciosa
 	•	Traços melancólicos e determinadas
