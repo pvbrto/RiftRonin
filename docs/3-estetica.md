@@ -1,10 +1,23 @@
 ### Estética
 
 - Personagens 
-    - Quais os personagens que farão parte do jogo?
-        - Ex: Protagonistas, Antagonistas, Personagens não jogaveis (NPCs) ...
-    - Qual o plano de fundo do(s) seu(s) personagem(s)?
-    - Quais as características mais importantes para serem adicionadas no(s) personagem(s)?
+    ### Protagonista – Musashi
+	•	Plano de fundo: Um ronin solitário que perdeu tudo com a destruição de sua vila por um clã desconhecido. Ao buscar vingança, descobre estar amaldiçoado: o sangue derramado por sua lâmina altera o clima ao seu redor.
+	•	Estilo visual: Musashi veste trajes típicos de um samurai errante, com elementos desgastados pela batalha. Seu visual é progressivamente alterado conforme avança na história – mais cicatrizes, roupas rasgadas, olhar cada vez mais pesado.
+	•	Características marcantes:
+	•	Habilidade com espada (katana)
+	•	Postura firme e silenciosa
+	•	Traços melancólicos e determinadas
+	•	Aura de poder e maldição
+
+    ### Antagonista – Líder da Irmandade da Tempestade
+	•	Plano de fundo: Um antigo mestre de Musashi, agora corrompido pelo desejo de unificar o Japão através do caos. Usa a maldição como arma.
+	•	Visual: Trajes cerimoniais ornamentados, sempre envolto em neblina ou tempestade. Presença imponente e espiritual.
+
+    ### NPCs e Inimigos
+	•	Inimigos comuns: Guerreiros mascarados, soldados e mercenários dos clãs inimigos.
+	•	NPCs neutros: Monges, aldeões, sobreviventes, que ajudam a contar fragmentos da história.
+	•	Chefes: Samurais de elite, cada um com habilidades únicas relacionadas a um tipo de clima (neve, trovão, tempestade, neblina, etc).
 
 - História
 
