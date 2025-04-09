@@ -1,6 +1,6 @@
 ## Dinâmica
 
-A dinâmica de *Rift Ronin* gira em torno de decisões impactantes, desafios crescentes e o envolvimento emocional do jogador com o protagonista e o mundo ao seu redor. O jogador é constantemente desafiado a adaptar sua abordagem, reagir às consequências de suas ações e lidar com dilemas morais significativos.
+A dinâmica de *Rift Ronin* gira em torno de decisões impactantes, desafios crescentes e o envolvimento emocional do jogador com o protagonista e o mundo ao seu redor. O jogador é constantemente desafiado a adaptar sua abordagem e reagir às consequências de suas ações.
 
 <br/>
 
@@ -23,7 +23,7 @@ A dinâmica de *Rift Ronin* gira em torno de decisões impactantes, desafios cre
 ### Tipos de Decisões do Jogador
 
 - **Discernível:**  
-  Embora menos frequente, em alguns momentos o jogo oferece escolhas claramente boas ou ruins, como poupar ou matar um personagem importante.
+  Embora menos frequente, em alguns momentos o jogo oferece escolhas claramente boas ou ruins, como poupar ou matar um inimigo.
 
 <br/>
 
