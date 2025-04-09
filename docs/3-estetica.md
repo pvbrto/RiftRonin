@@ -21,22 +21,22 @@
 
 - História
 
-    - Premissa:
+    - Premissa: <br/>
 	O jogo se passa em uma versão fictícia do Japão feudal. Após a destruição de sua vila, Musashi parte em uma jornada por um país devastado por guerras, confrontando não apenas inimigos humanos, mas também as forças da natureza, que ele mesmo desencadeia com sua maldição.
        
-    - Como o Jogo começa?
+    - Como o Jogo começa? <br/>
 	Musashi emerge das cinzas de sua vila destruída. Os primeiros passos do jogador são silenciosos, contemplativos, com o cenário transmitindo desolação. A narrativa inicial é contada por imagens e símbolos no ambiente.
 
-    - Como o jogo evolui?
-        •	Os combates se tornam mais intensos.
+    - Como o jogo evolui? <br/>
+        •	Os combates se tornam mais intensos. <br/>
 	•	As mudanças climáticas ganham novas camadas de profundidade mecânica e visual. <br/>
 	•	A narrativa se desdobra por meio de diálogos com NPCs, visões e símbolos no cenário. <br/>
 	•	Os dilemas morais tornam-se mais complexos. <br/>
 	•	O mundo ao redor muda com o personagem – mais sombrio, mais tempestuoso, mais imprevisível. <br/>
 
-    - Como o jogo termina? 
+    - Como o jogo termina? <br/>
         •	Final 1: Musashi aceita sua maldição e se torna o novo líder da Irmandade da Tempestade, espalhando sua força e controlando o clima como uma arma de dominação. <br/>
-	•	Final 2: Musashi resiste, enfrentando o líder da Irmandade e morrendo em um duelo final, quebrando o ciclo da maldição com seu sacrifício.
+	•	Final 2: Musashi resiste, enfrentando o líder da Irmandade e morrendo em um duelo final, quebrando o ciclo da maldição com seu sacrifício. <br/>
 
 - Sentidos
     - Visuais:
