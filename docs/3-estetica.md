@@ -31,8 +31,6 @@
         •	Os combates se tornam mais intensos. <br/>
 	•	As mudanças climáticas ganham novas camadas de profundidade mecânica e visual. <br/>
 	•	A narrativa se desdobra por meio de diálogos com NPCs, visões e símbolos no cenário. <br/>
-	•	Os dilemas morais tornam-se mais complexos. <br/>
-	•	O mundo ao redor muda com o personagem – mais sombrio, mais tempestuoso, mais imprevisível. <br/>
 
     - Como o jogo termina? <br/>
         •	Final 1: Musashi aceita sua maldição e se torna o novo líder da Irmandade da Tempestade, espalhando sua força e controlando o clima como uma arma de dominação. <br/>
