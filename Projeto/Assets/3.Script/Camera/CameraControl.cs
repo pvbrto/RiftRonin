@@ -27,32 +27,30 @@ public class CameraControl : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.currentStage == 1)
-        {
-            if (player.transform.position.x >= 0 && player.transform.position.x <= 12)
+         if (player.transform.position.x >= 0 && player.transform.position.x <= 14)
             {
                 transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
             }
-        }
-        else if (GameManager.instance.currentStage == 2)
-        {
-            if (player.transform.position.x >= 0 && player.transform.position.x <= 27)
-            {
-                transform.position = new Vector3(player.transform.position.x, -32.0f, transform.position.z);
-            }
-        }
-        else if (GameManager.instance.currentStage == 3)
-        {
-            if (player.transform.position.x >= 0 && player.transform.position.x <= 18)
-            {
-                transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
-            }
+        
+        // else if (GameManager.instance.currentStage == 2)
+        // {
+        //     if (player.transform.position.x >= 0 && player.transform.position.x <= 27)
+        //     {
+        //         transform.position = new Vector3(player.transform.position.x, -32.0f, transform.position.z);
+        //     }
+        // }
+        // else if (GameManager.instance.currentStage == 3)
+        // {
+        //     if (player.transform.position.x >= 0 && player.transform.position.x <= 18)
+        //     {
+        //         transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        //     }
 
-            if (player.transform.position.y >= -70 && player.transform.position.y <= -54.5)
-            {
-                transform.position = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
-            }
-        }
+        //     if (player.transform.position.y >= -70 && player.transform.position.y <= -54.5)
+        //     {
+        //         transform.position = new Vector3(transform.position.x, player.transform.position.y, transform.position.z);
+        //     }
+        // }
     }
 
     public void SetPosition(Vector3 newPosition)

@@ -79,15 +79,15 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        Intro();
+        //Intro();
     }
 
     private void Update()
     {
-        if (!GameManager.instance.gameStart || isDead)
-        {
-            return;
-        }
+        // if (!GameManager.instance.gameStart || isDead)
+        // {
+        //     return;
+        // }
 
         GetMouseInput();
         UpdateStatus();
