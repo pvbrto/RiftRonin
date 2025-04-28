@@ -64,10 +64,7 @@ public class GruntController : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.gameStart)
-        {
-            return;
-        }
+        
 
         isSlope = SlopeCheck();
 
@@ -267,7 +264,7 @@ public class GruntController : MonoBehaviour
 
         alert.SetActive(false);
 
-        GameManager.instance.GetScore();
+        //GameManager.instance.GetScore();
 
         rb.AddForce(((transform.position - playerPosition).normalized) * 15.0f, ForceMode2D.Impulse);
 
@@ -287,10 +284,10 @@ public class GruntController : MonoBehaviour
     {
         int num = Random.Range(0, 4);
 
-        if (!GameManager.instance.isSlow)
-        {
-            Time.timeScale = 0.25f;
-        }
+        // if (!GameManager.instance.isSlow)
+        // {
+        //     Time.timeScale = 0.25f;
+        // }
 
         animator.speed = 1.0f;
         animator.SetTrigger("Dead");
@@ -304,10 +301,13 @@ public class GruntController : MonoBehaviour
 
         yield return new WaitForSeconds(0.05f);
 
-        if (!GameManager.instance.isSlow)
-        {
-            Time.timeScale = 1.0f;
-        }
+        
+        Destroy(gameObject);
+
+        // if (!GameManager.instance.isSlow)
+        // {
+        //     Time.timeScale = 1.0f;
+        // }
     }
 
     private void Walk(int direction)
