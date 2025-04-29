@@ -37,6 +37,13 @@ public class GruntController : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask slopeMask;
 
+    [Header("Background")]
+    [SerializeField] public GameObject[] backgroundPrefabs;
+    [SerializeField] public Transform backgroundParent;
+    [SerializeField] public Vector3 spawnOffset;
+
+    private static int lastIndex = -1; // Armazena o último índice usado
+
     [Header("AI")]
     [SerializeField] private GameObject sight;
     [SerializeField] private GameObject attackRange;
@@ -60,6 +67,14 @@ public class GruntController : MonoBehaviour
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        if (backgroundParent == null)
+    {
+        backgroundParent = GameObject.Find("BackgroundContainer").transform;
+    }
     }
 
     private void Update()
@@ -301,7 +316,10 @@ public class GruntController : MonoBehaviour
 
         yield return new WaitForSeconds(0.05f);
 
+
         
+
+        AddDifferentBackground();
         Destroy(gameObject);
 
         // if (!GameManager.instance.isSlow)
@@ -309,6 +327,32 @@ public class GruntController : MonoBehaviour
         //     Time.timeScale = 1.0f;
         // }
     }
+
+    void AddDifferentBackground()
+    {
+        if (backgroundPrefabs.Length == 0 || backgroundParent == null) return;
+
+        // Destroi background anterior (se houver)
+        foreach (Transform child in backgroundParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Seleciona um background diferente do último
+        int index;
+        do
+        {
+            index = Random.Range(0, backgroundPrefabs.Length);
+        } while (backgroundPrefabs.Length > 1 && index == lastIndex);
+
+        lastIndex = index;
+
+        GameObject selectedPrefab = backgroundPrefabs[index];
+        Vector3 spawnPosition = backgroundParent.position + spawnOffset;
+
+        Instantiate(selectedPrefab, spawnPosition, Quaternion.identity, backgroundParent);
+    }
+    
 
     private void Walk(int direction)
     {
