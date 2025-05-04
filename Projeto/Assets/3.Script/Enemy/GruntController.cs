@@ -338,7 +338,7 @@ public class GruntController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        // Seleciona um background diferente do último
+        // Seleciona um background diferente do último e atualiza o clima
         int index;
         do
         {
@@ -346,6 +346,9 @@ public class GruntController : MonoBehaviour
         } while (backgroundPrefabs.Length > 1 && index == lastIndex);
 
         lastIndex = index;
+
+        // Atualiza o clima no WeatherManager
+        WeatherManager.Instance.SetWeather((WeatherType)index);
 
         GameObject selectedPrefab = backgroundPrefabs[index];
         Vector3 spawnPosition = backgroundParent.position + spawnOffset;
