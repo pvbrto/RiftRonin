@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
     public void Dead()
     {
-        GameManager.instance.BGM_Stop();
+        //GameManager.instance.BGM_Stop();
         CameraControl.instance.ShakeCamera(0.25f);
         StartCoroutine(Dead_co());
     }
