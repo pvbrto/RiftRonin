@@ -353,6 +353,13 @@ public class GruntController : MonoBehaviour
         GameObject selectedPrefab = backgroundPrefabs[index];
         Vector3 spawnPosition = backgroundParent.position + spawnOffset;
 
+            if (index == 1)
+            {
+                spawnPosition.y += 0.8f;
+            }
+
+        
+
         Instantiate(selectedPrefab, spawnPosition, Quaternion.identity, backgroundParent);
     }
     
