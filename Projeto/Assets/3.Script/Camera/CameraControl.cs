@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraControl : MonoBehaviour
 {
@@ -27,10 +28,13 @@ public class CameraControl : MonoBehaviour
 
     private void Update()
     {
-         if (player.transform.position.x >= 0 && player.transform.position.x <= 14)
+        if (SceneManager.GetActiveScene().name != "Inicio")
+        {
+            if (player.transform.position.x >= 0 && player.transform.position.x <= 14)
             {
                 transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
             }
+        }
         
         // else if (GameManager.instance.currentStage == 2)
         // {
