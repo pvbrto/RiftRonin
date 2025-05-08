@@ -1,31 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageMove : MonoBehaviour
 {
+    [Header("Background")]
+    [SerializeField] private GameObject[] backgroundPrefabs;
+    [SerializeField] private Transform backgroundParent;
+    [SerializeField] private Vector3 spawnOffset = Vector3.zero;
+
+    private void Start()
+    {
+        // Garantir que o BackgroundParent existe
+        if (backgroundParent == null)
+        {
+            backgroundParent = GameObject.Find("BackgroundContainer")?.transform;
+            if (backgroundParent == null)
+            {
+                Debug.LogError("BackgroundContainer não encontrado na cena!");
+                return;
+            }
+        }
+
+        // Inicializar o background baseado no clima atual
+        if (WeatherManager.Instance != null)
+        {
+            WeatherManager.Instance.InitializeBackground(backgroundParent, backgroundPrefabs, spawnOffset);
+        }
+        else
+        {
+            Debug.LogError("WeatherManager não encontrado!");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            switch (GameManager.instance.currentStage)
+            Debug.Log("Colidiu com o player");  
+            Debug.Log(SceneManager.GetActiveScene().name);
+            if (SceneManager.GetActiveScene().name == "Inicio")
             {
-                case 1:
-                    GameManager.instance.currentStage += 1;
-                    StageManager.instance.ChangeStage(collision.gameObject);
-                    break;
-
-                case 2:
-                    GameManager.instance.currentStage += 1;
-                    StageManager.instance.ChangeStage(collision.gameObject);
-                    break;
-
-                case 3:
-                    GameManager.instance.GameEnd();
-                    break;
+                SceneManager.LoadScene("Cena1");
+            }  
+            if (SceneManager.GetActiveScene().name == "Cena1")
+            {
+                SceneManager.LoadScene("Cena2");
             }
         }
     }
-
-    
 }
