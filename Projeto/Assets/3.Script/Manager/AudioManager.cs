@@ -5,19 +5,33 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
-    [Header("Music Clips")]
-    [SerializeField] private AudioClip ensolaradoMusic;
-    [SerializeField] private AudioClip invernoMusic;
-    [SerializeField] private AudioClip tempestadeMusic;
-    [SerializeField] private AudioClip noiteMusic;
+    [Header("Main Music")]
+    [SerializeField] private AudioClip mainMusic;
+
+    [Header("Weather Sound Effects")]
+    [SerializeField] private AudioClip ensolaradoSound;
+    [SerializeField] private AudioClip invernoSound;
+    [SerializeField] private AudioClip tempestadeSound;
+    [SerializeField] private AudioClip noiteSound;
+
+    [Header("Player Sound Effects")]
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip jumpSound;
+
+    [Header("Enemy Sound Effects")]
+    [SerializeField] private AudioClip enemyDeathSound;
 
     [Header("Audio Settings")]
     [SerializeField] private float fadeTime = 1f;
-    [SerializeField] private float volume = 1f;
+    [SerializeField] private float musicVolume = 1f;
+    [SerializeField] private float sfxVolume = 1f;
 
-    private AudioSource audioSource;
-    private AudioClip currentMusic;
+    private AudioSource musicSource;
+    private AudioSource weatherSource;
+    private AudioSource sfxSource;
+    private AudioClip currentWeatherSound;
     private Coroutine fadeCoroutine;
+    private bool isChangingWeather = false;
 
     private void Awake()
     {
@@ -25,13 +39,21 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            audioSource = GetComponent<AudioSource>();
-            if (audioSource == null)
-            {
-                audioSource = gameObject.AddComponent<AudioSource>();
-            }
-            audioSource.loop = true;
-            audioSource.volume = volume;
+            
+            // Configurar fonte de áudio para música principal
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.loop = true;
+            musicSource.volume = musicVolume;
+
+            // Configurar fonte de áudio para efeitos de clima
+            weatherSource = gameObject.AddComponent<AudioSource>();
+            weatherSource.loop = true;
+            weatherSource.volume = sfxVolume;
+
+            // Configurar fonte de áudio para efeitos do player
+            sfxSource = gameObject.AddComponent<AudioSource>();
+            sfxSource.loop = false;
+            sfxSource.volume = sfxVolume;
         }
         else
         {
@@ -41,6 +63,13 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        // Tocar música principal ao iniciar
+        if (mainMusic != null)
+        {
+            musicSource.clip = mainMusic;
+            musicSource.Play();
+        }
+
         if (WeatherManager.Instance != null)
         {
             WeatherManager.Instance.OnWeatherChanged += HandleWeatherChange;
@@ -57,66 +86,98 @@ public class AudioManager : MonoBehaviour
 
     private void HandleWeatherChange(WeatherType newWeather)
     {
-        AudioClip newMusic = GetMusicForWeather(newWeather);
-        if (newMusic != null && newMusic != currentMusic)
+        AudioClip newWeatherSound = GetWeatherSound(newWeather);
+        if (newWeatherSound != null && newWeatherSound != currentWeatherSound)
         {
-            PlayMusic(newMusic);
+            if (isChangingWeather)
+            {
+                StopCoroutine(fadeCoroutine);
+                weatherSource.Stop();
+            }
+            PlayWeatherSound(newWeatherSound);
         }
     }
 
-    private AudioClip GetMusicForWeather(WeatherType weather)
+    private AudioClip GetWeatherSound(WeatherType weather)
     {
         switch (weather)
         {
             case WeatherType.Ensolarado:
-                return ensolaradoMusic;
+                return ensolaradoSound;
             case WeatherType.Inverno:
-                return invernoMusic;
+                return invernoSound;
             case WeatherType.Tempestade:
-                return tempestadeMusic;
+                return tempestadeSound;
             case WeatherType.Noite:
-                return noiteMusic;
+                return noiteSound;
             default:
-                return ensolaradoMusic;
+                return ensolaradoSound;
         }
     }
 
-    private void PlayMusic(AudioClip music)
+    private void PlayWeatherSound(AudioClip weatherSound)
     {
         if (fadeCoroutine != null)
         {
             StopCoroutine(fadeCoroutine);
         }
-        fadeCoroutine = StartCoroutine(FadeMusic(music));
+        fadeCoroutine = StartCoroutine(FadeWeatherSound(weatherSound));
     }
 
-    private System.Collections.IEnumerator FadeMusic(AudioClip newMusic)
+    private System.Collections.IEnumerator FadeWeatherSound(AudioClip newWeatherSound)
     {
-        // Fade out
-        float startVolume = audioSource.volume;
+        isChangingWeather = true;
+
+        // Fade out do som atual
+        float startVolume = weatherSource.volume;
         float timer = 0;
 
         while (timer < fadeTime)
         {
             timer += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(startVolume, 0, timer / fadeTime);
+            weatherSource.volume = Mathf.Lerp(startVolume, 0, timer / fadeTime);
             yield return null;
         }
 
-        // Change music
-        audioSource.clip = newMusic;
-        currentMusic = newMusic;
-        audioSource.Play();
+        // Trocar o som
+        weatherSource.clip = newWeatherSound;
+        currentWeatherSound = newWeatherSound;
+        weatherSource.Play();
 
-        // Fade in
+        // Fade in do novo som
         timer = 0;
         while (timer < fadeTime)
         {
             timer += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(0, volume, timer / fadeTime);
+            weatherSource.volume = Mathf.Lerp(0, sfxVolume, timer / fadeTime);
             yield return null;
         }
 
-        audioSource.volume = volume;
+        weatherSource.volume = sfxVolume;
+        isChangingWeather = false;
+    }
+
+    public void PlayAttackSound()
+    {
+        if (attackSound != null)
+        {
+            sfxSource.PlayOneShot(attackSound);
+        }
+    }
+
+    public void PlayJumpSound()
+    {
+        if (jumpSound != null)
+        {
+            sfxSource.PlayOneShot(jumpSound);
+        }
+    }
+
+    public void PlayEnemyDeathSound()
+    {
+        if (enemyDeathSound != null)
+        {
+            sfxSource.PlayOneShot(enemyDeathSound);
+        }
     }
 } 

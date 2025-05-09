@@ -95,20 +95,20 @@ public class PlayerController : MonoBehaviour
         if (grabWall || slideWall)
         {
             GetInputOnWall();
-            rb.linearVelocity += Vector2.up * 0.1f; // õõ�� �����´�
+            rb.linearVelocity += Vector2.up * 0.1f; // õ ´
         }
         else
         {
-            GetInputToMove(); // CanMove�� true�϶��� �Է� ����
+            GetInputToMove(); // CanMove϶ Է 
         }
 
        // GetShiftInput(); 
         ClampMaxVelocity();
     }
 
-    public void GrabWall(int direction) // ���� ����
+    public void GrabWall(int direction) // 
     {
-        // direction 0: ������ �� Ÿ��, 1: ���� �� Ÿ��
+        // direction 0:  , 1: 
         if (direction == 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
@@ -118,13 +118,13 @@ public class PlayerController : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation; // �¿�� �� �����̰� ����
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation; // ¿ ̰ 
         animator.enabled = false;
         grabWall = true;
         GetComponent<SpriteRenderer>().sprite = grabWallImage;
     }
 
-    public void ExitWall() // ������ �־���
+    public void ExitWall() // 
     {
         GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
 
@@ -215,10 +215,10 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Intro_co()
     {
-        // 0. Ʈ������ ���
+        // 0. Ʈ 
         yield return new WaitForSeconds(3.0f);
 
-        // 1. ���������� �̵�
+        // 1. 
         animator.SetBool("isRun", true);
 
         while (transform.position.x < -15)
@@ -228,19 +228,19 @@ public class PlayerController : MonoBehaviour
         }
         transform.position = new Vector3(-15, -2.822f, 0);
 
-        // 2. ���߰� PlaySong �ִϸ��̼�
+        // 2. 
         animator.SetBool("isRun", false);
         animator.SetTrigger("PlaySong");
         yield return new WaitForSeconds(2.0f);
         GameManager.instance.BGM_Play();
 
-        // 3. UI ���
+        // 3. UI 
         songTitle.GetComponent<SongTitle>().StartAnimation();
         mapTitle.GetComponent<MapTitle>().StartAnimation();
         yield return new WaitForSeconds(3.0f);
 
 
-        // 4. ���콺 �Է¹޾� ���� ����
+        // 4. 콺  Է¹޾  Է 
         while (true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))) // ���� �Է�
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))) // Է
         {
             StartCoroutine(InvincibleWhileFlip_co());
 
@@ -294,11 +294,11 @@ public class PlayerController : MonoBehaviour
 
             EffectManager.instance.JumpDust(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z));
 
-            if (GetComponent<SpriteRenderer>().flipX == false) // ������ ���� ���� ����
+            if (GetComponent<SpriteRenderer>().flipX == false) //   ϶ 
             {
                 jumpDirection = Vector2.up + Vector2.left;
             }
-            else // ���� ���� ���� ����
+            else //   ϶ 
             {
                 jumpDirection = Vector2.up + Vector2.right;
             }
@@ -308,9 +308,9 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Flip");
         }
 
-        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))) // ����
+        if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))) // 
         {
-            if (GetComponent<SpriteRenderer>().flipX == false) // ������ ���� ���� ���¸�
+            if (GetComponent<SpriteRenderer>().flipX == false) //   ϶ ¸
             {
                 if (wallInputTimer < 0.25f)
                 {
@@ -324,9 +324,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))) // ������
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))) // 
         {
-            if (GetComponent<SpriteRenderer>().flipX == true) // ���� ���� ���� ���¸�
+            if (GetComponent<SpriteRenderer>().flipX == true) //   ϶ ¸
             {
                 if (wallInputTimer < 0.25f)
                 {
@@ -340,14 +340,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))) // Ű���� ����
+        if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))) // Ű 
         {
-            wallInputTimer = 0; // Ÿ�̸� �ʱ�ȭ
+            wallInputTimer = 0; // Ÿ ʱȭ
         }
 
-        if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))) // Ű���� ����
+        if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))) // Ű 
         {
-            wallInputTimer = 0; // Ÿ�̸� �ʱ�ȭ
+            wallInputTimer = 0; // Ÿ ʱȭ
         }
     }
 
@@ -370,25 +370,26 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // [ �Է� ]
-        x = Input.GetAxisRaw("Horizontal"); // �¿� �̵� �Է�
+        // [ Է ]
+        x = Input.GetAxisRaw("Horizontal"); //¿ ̵ Է
 
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && !isRoll) // ���� �Է�
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && !isRoll) // Է
         {
             Vector2 jumpDirection;
 
-            if (isGround) // ������ ����
+            if (isGround) // 
             {
                 jumpDirection = Vector2.up;
 
                 EffectManager.instance.JumpDust(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z));
+                AudioManager.Instance.PlayJumpSound();
 
                 rb.AddForce(jumpDirection * jumpForce, ForceMode2D.Impulse);
                 animator.SetTrigger("Jump");
             }
         }
 
-        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && isGround) // ���̱� �Է�
+        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && isGround) // ̱ Է
         {
             fallThrough = true;
 
@@ -403,8 +404,8 @@ public class PlayerController : MonoBehaviour
                 isCrouch = true;
             }
 
-            // �Ʒ� ����Ű + �� ����Ű ���ÿ�
-            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && crouchCoolTime >= 1.0f) // �������� ������
+            // Ʒ  Ʒ  ÿ
+            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && crouchCoolTime >= 1.0f) // 
             {
                 fallThrough = false;
                 invincible = true;
@@ -414,7 +415,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Roll_co(Vector2.left));
             }
 
-            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && crouchCoolTime >= 1.0f) // ���������� ������
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && crouchCoolTime >= 1.0f) // 
             {
                 fallThrough = false;
                 invincible = true;
@@ -425,8 +426,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // �Ʒ� ����Ű ������ ���� �� ����Ű
-        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && crouchCoolTime >= 1.0f && crouchBuffer < 0.25f && isGround) // �������� ������
+        // Ʒ  ϶  Ʒ
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && crouchCoolTime >= 1.0f && crouchBuffer < 0.25f && isGround) // 
         {
             fallThrough = false;
             invincible = true;
@@ -436,7 +437,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Roll_co(Vector2.left));
         }
 
-        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && crouchCoolTime >= 1.0f && crouchBuffer < 0.25f && isGround) // ���������� ������
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && crouchCoolTime >= 1.0f && crouchBuffer < 0.25f && isGround) // 
         {
             fallThrough = false;
             invincible = true;
@@ -446,15 +447,15 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Roll_co(Vector2.right));
         }
 
-        if (isCrouch && (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))) // ���̱� ����
+        if (isCrouch && (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S))) // ̱ 
         {
             fallThrough = false;
             isCrouch = false;
             animator.SetTrigger("UnCrouch");
         }
 
-        // [ �̵� ]
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Precrouch")) // ����ä�� �̵� ����
+        // [ ̵ ]
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Player_Precrouch")) //  ä ̵ 
         {
             return;
         }
@@ -489,16 +490,16 @@ public class PlayerController : MonoBehaviour
             timeBetweenInput = 0;
             animator.SetBool("isRun", true);
 
-            // [ �̵� ]
-            if (isGround && !isSlope) // ������ �̵�
+            // [ ̵ ]
+            if (isGround && !isSlope) // ̵
             {
                 transform.position += playerSpeed * Time.deltaTime * new Vector3(x, 0, 0); 
             }
-            else if (isGround && isSlope) // ���ο��� �̵�
+            else if (isGround && isSlope) // ο ̵
             {
                 transform.position += playerSpeed * Time.deltaTime * new Vector3(slopeNormalPerp.x * -x, slopeNormalPerp.y * -x, 0);
             }
-            else // ���߿��� �̵�
+            else // ߿ ̵
             {
                 transform.position += 0.5f * playerSpeed * Time.deltaTime * new Vector3(x, 0, 0); 
             }
@@ -517,13 +518,13 @@ public class PlayerController : MonoBehaviour
 
     // private void GetShiftInput()
     // {
-    //     if (Input.GetKeyDown(KeyCode.LeftShift)) // ���ο���
+    //     if (Input.GetKeyDown(KeyCode.LeftShift)) // ο
     //     {
     //         shiftButtonUI.GetComponent<ShiftButtonImageOnOff>().SetImageOff();
     //         GameManager.instance.StartSlowMotion();
     //     }
 
-    //     if (Input.GetKeyUp(KeyCode.LeftShift)) // ���ο��� ����
+    //     if (Input.GetKeyUp(KeyCode.LeftShift)) // ο 
     //     {
     //         shiftButtonUI.GetComponent<ShiftButtonImageOnOff>().SetImageOn();
     //         GameManager.instance.StopSlowMotion();
@@ -534,26 +535,27 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (attackCoolTime < 0.3f) // ���� ��Ÿ�� ���� ���� �Ұ�
+            if (attackCoolTime < 0.3f) //  Ÿ   Ұ
             {
                 return;
             }
 
             attackCoolTime = 0;
+            AudioManager.Instance.PlayAttackSound();
 
             targetPosition = mousePoint - transform.position;
             targetPosition.Normalize();
 
-            angleZ = Mathf.Atan2(targetPosition.y, targetPosition.x) * 180 / Mathf.PI; // ��ũ ź��Ʈ�� �� ���͸� �̿��� ���� ���� (rotation�� z��) ���
+            angleZ = Mathf.Atan2(targetPosition.y, targetPosition.x) * 180 / Mathf.PI; // ũ źƮ  ͸ ̿  (rotation z) 
 
             if (mousePoint.x >= transform.position.x)
             {
-                //Debug.Log("���������� ����");
+                //Debug.Log("  ϶");
                 transform.GetComponent<SpriteRenderer>().flipX = false;
             }
             else
             {
-                //Debug.Log("�������� ����");
+                //Debug.Log("  ");
                 transform.GetComponent<SpriteRenderer>().flipX = true;
             }
 
@@ -583,18 +585,18 @@ public class PlayerController : MonoBehaviour
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        // ���� �������� ����
+        // 
         if (attackCount == 0)
         {
             attackCount += 1;
-            rb.AddForce(targetPosition * attackForce, ForceMode2D.Impulse); // ù ���ݽ� ���ϰ�
+            rb.AddForce(targetPosition * attackForce, ForceMode2D.Impulse); // ù  ϰ
         }
         else
         {
-            rb.AddForce(targetPosition * (attackForce * 0.33f), ForceMode2D.Impulse); // ���� ���ϰ�
+            rb.AddForce(targetPosition * (attackForce * 0.33f), ForceMode2D.Impulse); //  ϰ
         }
 
-        yield return new WaitForSeconds(0.33f); // ��� �̵� ����
+        yield return new WaitForSeconds(0.33f); // 
 
         canMove = true;
         isAttack = false;
@@ -642,7 +644,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*private void OnDrawGizmos() // Attack Hitbox �׸���
+    /*private void OnDrawGizmos() // Attack Hitbox 
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position + targetPosition * 2.0f, boxSize);
@@ -658,13 +660,13 @@ public class PlayerController : MonoBehaviour
         EffectManager.instance.RunDust(direction, feetPosition);
     }
 
-    private void UpdateStatus() // [ ���� ������Ʈ ]
+    private void UpdateStatus() // [  Ʈ ]
     {
-        feetPosition = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z); // �÷��̾� �� ��ġ ������Ʈ
+        feetPosition = new Vector3(transform.position.x, transform.position.y - 1.0f, transform.position.z); // ÷̾  Ʈ
 
-        mousePoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)); // ���콺 ��ġ ������Ʈ
+        mousePoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)); // 콺 Ʈ
 
-        // ���� ����� ��
+        // 
         if (!isGround && GroundCheck() && rb.linearVelocity.y <= 0)
         {
             if (grabWall)
@@ -675,7 +677,7 @@ public class PlayerController : MonoBehaviour
             slideWall = false;
             animator.SetTrigger("Idle");
 
-            // ���� ����
+            // 
             EffectManager.instance.LandDust(feetPosition);
         }
 

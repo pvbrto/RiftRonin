@@ -307,6 +307,9 @@ public class GruntController : MonoBehaviour
         animator.speed = 1.0f;
         animator.SetTrigger("Dead");
 
+        // Tocar som de morte do inimigo
+        AudioManager.Instance.PlayEnemyDeathSound();
+
         GameObject blood = Instantiate(bloodPrefabs[num], new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z), Quaternion.identity);
 
         if (rb.linearVelocity.x < 0)
@@ -315,9 +318,6 @@ public class GruntController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.05f);
-
-
-        
 
         AddDifferentBackground();
         Destroy(gameObject);
