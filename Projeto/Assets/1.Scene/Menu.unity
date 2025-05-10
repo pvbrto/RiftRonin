@@ -827,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5ff9163512a274cb1af9fac5883387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeCenaDoJogo: Cena1
+  nomeCenaDoJogo: Inicio
   painelConfiguracoes: {fileID: 0}
 --- !u!4 &1611421575
 Transform:

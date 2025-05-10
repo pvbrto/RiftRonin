@@ -11483,8 +11483,8 @@ RectTransform:
   m_GameObject: {fileID: 1364082951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1779247262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11574,6 +11574,61 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1102996075}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1436081947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1436081949}
+  - component: {fileID: 1436081948}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1436081948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436081947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe2d70183c4a4fa4ab603d9592c267f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMusic: {fileID: 8300000, guid: 9d58ca14a012c44e79b290a69b734b59, type: 3}
+  ensolaradoSound: {fileID: 0}
+  invernoSound: {fileID: 8300000, guid: c4122477aa86a40deb537edf8f72be7f, type: 3}
+  tempestadeSound: {fileID: 8300000, guid: d008cae8c3b904bba9c4581ecfb4e83b, type: 3}
+  noiteSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 81cbc1cef7ad0435a855434c65b7be37, type: 3}
+  jumpSound: {fileID: 0}
+  enemyDeathSound: {fileID: 8300000, guid: aef576da12e1d41bfaa1d0771c7c7871, type: 3}
+  fadeTime: 1
+  musicVolume: 0.5
+  sfxVolume: 1
+--- !u!4 &1436081949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436081947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.7867646, y: 11.300034, z: -10.195615}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1570948388
@@ -13503,3 +13558,4 @@ SceneRoots:
   - {fileID: 446209846}
   - {fileID: 335516468}
   - {fileID: 2144314858}
+  - {fileID: 1436081949}
