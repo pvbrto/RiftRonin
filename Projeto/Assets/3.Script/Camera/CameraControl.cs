@@ -28,7 +28,7 @@ public class CameraControl : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name != "Inicio")
+        if (SceneManager.GetActiveScene().name != "Inicio" && SceneManager.GetActiveScene().name != "Cena2")
         {
             if (player.transform.position.x >= 0 && player.transform.position.x <= 14)
             {
