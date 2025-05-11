@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Enemy
+  - Gangster
+  - Fogueira
   layers:
   - Default
   - TransparentFX

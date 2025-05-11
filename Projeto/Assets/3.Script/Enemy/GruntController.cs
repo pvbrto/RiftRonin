@@ -128,27 +128,30 @@ public class GruntController : MonoBehaviour
         if (currentState == State.Track)
         {
             int trackDirection = 0;
+            if(player != null)
+            {
+                if (player.transform.position.x < transform.position.x)
+                {
+                    trackDirection = -1;
+                    sr.flipX = true;
+                }
+                else
+                {
+                    trackDirection = 1;
+                    sr.flipX = false;
+                }
 
-            if (player.transform.position.x < transform.position.x)
-            {
-                trackDirection = -1;
-                sr.flipX = true;
-            }
-            else
-            {
-                trackDirection = 1;
-                sr.flipX = false;
-            }
-
-            if (isSlope) // ���ο��� �̵�
-            {
-                transform.position += 5.0f * Time.deltaTime * new Vector3(slopeNormalPerp.x * -trackDirection, slopeNormalPerp.y * -trackDirection, 0);
-            }
-            else
-            {
-                transform.position += 5.0f * Time.deltaTime * new Vector3(trackDirection, 0, 0);
-            }
+                if (isSlope) // ���ο��� �̵�
+                {
+                    transform.position += 5.0f * Time.deltaTime * new Vector3(slopeNormalPerp.x * -trackDirection, slopeNormalPerp.y * -trackDirection, 0);
+                }
+                else
+                {
+                    transform.position += 5.0f * Time.deltaTime * new Vector3(trackDirection, 0, 0);
+                }
         }
+            }
+            
 
         if (currentState == State.Attack)
         {
@@ -176,7 +179,7 @@ public class GruntController : MonoBehaviour
     {
         canMove = false;
         animator.SetTrigger("Attack");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
 
         AttackHitbox();
         yield return new WaitForSeconds(1.0f);
@@ -320,6 +323,7 @@ public class GruntController : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         AddDifferentBackground();
+        yield return new WaitForSeconds(0.01f);
         Destroy(gameObject);
 
         // if (!GameManager.instance.isSlow)

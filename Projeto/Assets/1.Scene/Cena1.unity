@@ -6080,6 +6080,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &638471677
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.146989
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3817406222999404049, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630684104897968410, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
+      propertyPath: m_Name
+      value: Fogueira
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77feb491d6692d84f935d585517dbf4d, type: 3}
 --- !u!1001 &656043990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11246,6 +11303,9 @@ MonoBehaviour:
   shiftButtonUI: {fileID: 0}
   songTitle: {fileID: 0}
   mapTitle: {fileID: 0}
+  snowSlowDownFactor: 0.99
+  minSpeedInSnow: 3
+  fogueiraRestoreSpeed: 10
 --- !u!70 &1182727435
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -13703,3 +13763,4 @@ SceneRoots:
   - {fileID: 446209846}
   - {fileID: 335516468}
   - {fileID: 1417044139}
+  - {fileID: 638471677}

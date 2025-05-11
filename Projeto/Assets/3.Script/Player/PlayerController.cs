@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool isRunRight = false;
     private float x;
     private Vector3 feetPosition;
-    
+
     [Header("Slope")]
     [SerializeField] private LayerMask slopeMask;
     private RaycastHit2D slopeHit;
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private float crouchCoolTime = 1.0f;
     public bool isRoll = false;
     public bool fallThrough = false;
-    
+
     [Header("Attack")]
     [SerializeField] private float attackForce = 20.0f;
     [SerializeField] private Vector2 boxSize; // Attack hitbox size
@@ -67,43 +67,162 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject songTitle;
     [SerializeField] private GameObject mapTitle;
 
+    [Header("Neve")]
+    [SerializeField] private float snowSlowDownFactor = 0.99f;  // Fator de desaceleração gradual na neve
+    [SerializeField] private float minSpeedInSnow = 3.0f;  // Velocidade mínima na neve
+    private bool nearfogueira = false;  // Verifica se o jogador está perto de uma fogueira
+    [SerializeField] private float fogueiraRestoreSpeed = 10.0f;  // Velocidade restaurada perto da fogueira
+
     // Components
     private Animator animator;
     private Rigidbody2D rb;
+    private bool isSliding = false;
+    private bool nevando = false;
 
     // CheckTimeForAnimation
     private float timeBetweenInput = 0;
+
+    // Novas variáveis para controle do deslize
+    private float slideForceDuration = 0.5f;  // Duração do deslizamento
+    private float slideForceTimer = 5f;  // Timer para aplicar a força contínua
+
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
-        //Intro();
+        SetSpeedBasedOnBackground();
     }
 
     private void Update()
     {
-        // if (!GameManager.instance.gameStart || isDead)
-        // {
-        //     return;
-        // }
-
         GetMouseInput();
         UpdateStatus();
+        SetSpeedBasedOnBackground();
+
+        if (nearfogueira && nevando) 
+        {
+            playerSpeed = fogueiraRestoreSpeed;
+        }
+        else 
+        {
+            // Aplica a desaceleração gradual na neve
+            if (nevando)  // Checa se o jogador está na neve
+            {
+                nevando = false;
+                StartCoroutine(LentidaoNeve());
+            }
+            else
+            {
+                // Se o jogador não está na neve, a velocidade volta ao valor base
+                SetSpeedBasedOnBackground();  // Recalcula a velocidade base com base no fundo
+            }
+        }
+
+        // Lógica de deslize
+        if (Input.GetKeyDown(KeyCode.D))  // Quando a tecla "D" for pressionada
+        {
+            isSliding = true;  // Inicia o deslize
+            slideForceTimer = slideForceDuration;  // Reseta o timer do deslize
+            x = 1f;  // Direção positiva (direita)
+        }
+        if (Input.GetKeyDown(KeyCode.A))  // Quando a tecla "A" for pressionada
+        {
+            isSliding = true;  // Inicia o deslize
+            slideForceTimer = slideForceDuration;  // Reseta o timer do deslize
+            x = -1f;  // Direção negativa (esquerda)
+        }
+
+        if (slideForceTimer > 0)
+        {
+            slideForceTimer -= Time.deltaTime;  // Decrementa o timer de deslize
+        }
+        else
+        {
+            isSliding = false;  // Quando o tempo de deslize acabou, para o deslize
+        }
 
         if (grabWall || slideWall)
         {
             GetInputOnWall();
-            rb.linearVelocity += Vector2.up * 0.1f; // õ ´
+            rb.linearVelocity += Vector2.up * 0.1f; // Se estiver em paredão
         }
         else
         {
-            GetInputToMove(); // CanMove϶ Է 
+            GetInputToMove();  // Se não estiver em paredão, pode andar normalmente
         }
 
-       // GetShiftInput(); 
         ClampMaxVelocity();
+    }
+
+    private IEnumerator LentidaoNeve()
+    {
+        yield return new WaitForSeconds(1.5f);
+        playerSpeed = Mathf.Max(playerSpeed * snowSlowDownFactor, minSpeedInSnow);
+        nevando = true;
+    }
+
+    private void SetSpeedBasedOnBackground()
+    {
+        GameObject backgroundContainer = GameObject.Find("BackgroundContainer");
+
+        if (backgroundContainer != null)
+        {
+            Transform activeBackground = null;
+
+            foreach (Transform child in backgroundContainer.transform)
+            {
+                if (child.gameObject.activeSelf)
+                {
+                    activeBackground = child;
+                    break;
+                }
+            }
+
+            if (activeBackground != null)
+            {
+                string bgName = activeBackground.name;
+                string bgInitial = bgName.Substring(0, 1);
+
+                switch (bgInitial)
+                {
+                    case "I":
+                        nevando = true;
+                        break;
+                    case "T":
+                        playerSpeed = 15.0f;
+                        if (isSliding)
+                        {
+                            if (slideForceTimer > 0f)
+                            {
+                                rb.AddForce(new Vector2(x * 0.5f, 0), ForceMode2D.Force);
+                            }
+                        }
+                        break;
+                    default:
+                        playerSpeed = 10.0f;
+                        break;
+                }
+
+                Debug.Log("Background ativo: " + bgName + " | Velocidade do player: " + playerSpeed);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Fogueira"))
+        {
+            nearfogueira = true;  // O jogador entrou na área da fogueira
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Fogueira"))
+        {
+            nearfogueira = false;  // O jogador saiu da área da fogueira
+        }
     }
 
     public void GrabWall(int direction) // 
@@ -198,7 +317,7 @@ public class PlayerController : MonoBehaviour
         
         yield return new WaitForSeconds(3.0f);
 
-        GameManager.instance.GameOver(0);
+        //GameManager.instance.GameOver(0);
     }
 
     public void Outro()
@@ -623,7 +742,7 @@ public class PlayerController : MonoBehaviour
 
                 collider.GetComponent<GruntController>().Dead(transform.position);
             }
-            else if (collider.CompareTag("Gangster"))
+           /* else if (collider.CompareTag("Gangster"))
             {
                 if (collider.GetComponent<GangsterController>().currentState == State.Dead)
                 {
@@ -640,7 +759,7 @@ public class PlayerController : MonoBehaviour
             else if (collider.CompareTag("Door"))
             {
                 collider.GetComponent<DoorControl>().OpenDoor();
-            }
+            }*/
         }
     }
 
