@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ebe11e6f2c63047a8a2ff817e3188fce
+guid: 1af9aae32c0701f4abae5cc0cbb38bdc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6061907009690382438
-    second: -OVHUZ.gif_0
+      213: -3734520627014048140
+    second: png-clipart-moon-space-universe-cosmos-night-pixel-pixel-art-8-bit-thumbnail-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: -OVHUZ.gif_0
+      name: png-clipart-moon-space-universe-cosmos-night-pixel-pixel-art-8-bit-thumbnail-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 51
-        width: 103
-        height: 136
+        x: 68
+        y: 73
+        width: 209
+        height: 207
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 660bb06de48302450800000000000000
-      internalID: 6061907009690382438
+      spriteID: 476657ca6415c2cc0800000000000000
+      internalID: -3734520627014048140
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      -OVHUZ.gif_0: 6061907009690382438
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
