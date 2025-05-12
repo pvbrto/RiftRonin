@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      -OVHUZ.gif_0: 6061907009690382438
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
