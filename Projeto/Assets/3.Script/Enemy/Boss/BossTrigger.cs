@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossTrigger : MonoBehaviour
 {
     [Header("Boss")]
-    [SerializeField] private GameObject boss;
+    [SerializeField] private BossController bossController; // Recebe diretamente o componente
     [SerializeField] private bool activateImmediately = false;
     [SerializeField] private AudioClip bossEntrySound;
 
@@ -13,62 +13,58 @@ public class BossTrigger : MonoBehaviour
 
     private void Start()
     {
-        // Verificar se o Boss está atribuído
-        if (boss == null)
+        if (bossController == null)
         {
-            Debug.LogError("Boss não atribuído no BossTrigger!");
+            Debug.LogError("BossController não atribuído no BossTrigger!");
             return;
         }
 
-        // Desativar o Boss inicialmente, a menos que esteja configurado para ativar imediatamente
-        // if (!activateImmediately)
-        // {
-        //     boss.SetActive(false);
-        // }
+        if (activateImmediately)
+        {
+            ActivateBoss();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Verificar se já foi acionado ou se o Boss não está atribuído
-        if (isTriggered || boss == null)
+        Debug.Log("Trigger detectou: " + collision.gameObject.name);
+
+        if (isTriggered || bossController == null)
         {
             return;
         }
 
-        // Verificar se é o jogador
         if (collision.CompareTag("Player"))
         {
-            isTriggered = true;
-            
-            // Iniciar a sequência do Boss
-            StartCoroutine(BossEntry());
+            Debug.Log("Player detectado! Ativando Boss");
+            ActivateBoss();
         }
     }
 
-    private IEnumerator BossEntry()
+    private void ActivateBoss()
     {
+        isTriggered = true;
+        
+        Debug.Log("Método ActivateBoss chamado no BossTrigger");
+        
         // Tocar som de entrada do Boss, se disponível
         if (bossEntrySound != null)
         {
             AudioSource.PlayClipAtPoint(bossEntrySound, transform.position);
         }
-
-        // Opcional: Criar uma pausa dramática
-        yield return new WaitForSeconds(1.0f);
-
+        
         // Ativar o Boss
-        boss.SetActive(true);
-
-        // Opcional: Shake na câmera para efeito dramático
-        if (CameraControl.instance != null)
+        if (bossController != null)
         {
-            CameraControl.instance.ShakeCamera(0.5f);
+            Debug.Log("Chamando método ActivateBoss() no BossController");
+            bossController.ActivateBoss();
         }
-
-        // Opcional: Mudar música para a música do Boss
-        // GameManager.instance.PlayBossMusic();
-
+        else
+        {
+            Debug.LogError("BossController é null! Não foi possível ativar o boss.");
+        }
+        
         // Destruir o trigger após ativar o Boss
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, 5.0f);
     }
 }

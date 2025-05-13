@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BossState
+{
+    Idle,
+    Track,
+    Attack
+}
+
 public class BossController : MonoBehaviour
 {
     [Header("Estado")]
-    public State currentState;
+    public BossState currentState;
     private bool canMove = true;
 
     // Componentes
@@ -14,14 +21,13 @@ public class BossController : MonoBehaviour
     private Rigidbody2D rb;
 
     [Header("Perseguição")]
-    [SerializeField] private float moveSpeed = 7.0f;
-    [SerializeField] private float detectionRadius = 15.0f;
+    [SerializeField] private float moveSpeed = 5.0f;
     private GameObject player;
     
     [Header("Ataque")]
     [SerializeField] private float attackRange = 2.0f;
-    [SerializeField] private float attackCooldown = 1.5f;
-    [SerializeField] private Vector2 attackHitboxSize = new Vector2(2.5f, 2.0f);
+    [SerializeField] private float attackCooldown = 2.0f;
+    [SerializeField] private Vector2 boxSize = new Vector2(3.0f, 2.0f);
     private bool isAttacking = false;
     private float attackTimer = 0f;
 
@@ -29,32 +35,42 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject attackEffect;
     [SerializeField] private GameObject alert;
 
-    [Header("Áudio")]
-    [SerializeField] private AudioClip bossDetectionSound;
-    [SerializeField] private AudioClip bossAttackSound;
-
-    [Header("Slope")]
+    [Header("LayerMask")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask slopeMask;
+
+    // Slope
     private RaycastHit2D slopeHit;
     private bool isSlope = false;
     private Vector2 slopeNormalPerp;
 
     private void Awake()
     {
-        currentState = State.Idle;
+        currentState = BossState.Idle;
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        
+        Debug.Log("Boss inicializado no estado: " + currentState);
     }
 
     private void Start()
     {
-        // Procura o jogador na cena
+        // Encontrar o jogador
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
             Debug.LogError("Player não encontrado na cena!");
+        }
+        else
+        {
+            Debug.Log("Player encontrado com sucesso");
+        }
+        
+        // Garantir que o alerta esteja desativado no início
+        if (alert != null)
+        {
+            alert.SetActive(false);
         }
     }
 
@@ -63,7 +79,7 @@ public class BossController : MonoBehaviour
         // Verificar se está em uma rampa
         isSlope = SlopeCheck();
         
-        // Atualizar o timer de ataque
+        // Gerenciamento do timer de ataque
         if (attackTimer < attackCooldown)
         {
             attackTimer += Time.deltaTime;
@@ -72,73 +88,70 @@ public class BossController : MonoBehaviour
         // Lógica baseada no estado atual
         switch (currentState)
         {
-            case State.Idle:
-                CheckForPlayer();
+            case BossState.Idle:
+                // Espera pelo BossTrigger ativar
                 break;
                 
-            case State.Track:
-                TrackPlayer();
-                CheckAttackRange();
+            case BossState.Track:
+                if (player != null && canMove)
+                {
+                    TrackPlayer();
+                    CheckAttackRange();
+                }
                 break;
                 
-            case State.Attack:
+            case BossState.Attack:
                 if (!isAttacking && attackTimer >= attackCooldown)
                 {
                     StartCoroutine(Attack_co());
                 }
                 break;
-                
-            case State.Dead:
-                // O Boss não morre, então este estado não é usado
-                break;
         }
     }
 
-    private void CheckForPlayer()
+    // Ativado pelo BossTrigger
+    public void ActivateBoss()
     {
-        if (player == null) return;
-
-        // Verificar se o jogador está dentro do raio de detecção
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         
-        if (distanceToPlayer <= detectionRadius)
+        if (currentState != BossState.Idle) 
         {
-            // Alertar que encontrou o jogador
-            if (alert != null)
-            {
-                alert.SetActive(true);
-            }
-            
-            // Tocar som de detecção
-            if (bossDetectionSound != null)
-            {
-                AudioSource.PlayClipAtPoint(bossDetectionSound, transform.position);
-            }
-            
-            // Mudar para estado de perseguição
-            currentState = State.Track;
-            
-            // Trigger de animação
-            if (animator != null)
-            {
-                animator.SetTrigger("Track");
-            }
+            return;
+        }
+        
+        currentState = BossState.Track;
+        
+        if (alert != null)
+        {
+            alert.SetActive(true);
+            Debug.Log("Alerta ativado");
+        }
+        
+        if (animator != null)
+        {
+            animator.SetTrigger("Track");
+        }
+        else
+        {
+            Debug.LogWarning("Animator não encontrado no Boss");
+        }
+        
+        // Shake na câmera para efeito dramático
+        if (CameraControl.instance != null)
+        {
+            CameraControl.instance.ShakeCamera(0.5f);
+            Debug.Log("Camera shake ativado");
         }
     }
 
     private void TrackPlayer()
     {
-        if (player == null || !canMove) return;
-
-        // Direção para o jogador
-        Vector2 directionToPlayer = player.transform.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
+        if (player == null) return;
         
-        // Normalizar a direção
-        directionToPlayer.Normalize();
+        // Determinar direção para o jogador
+        float directionX = player.transform.position.x < transform.position.x ? -1 : 1;
         
-        // Definir a orientação do sprite com base na direção
-        if (directionToPlayer.x < 0)
+        // Orientação do sprite
+        if (directionX < 0)
         {
             sr.flipX = true;
         }
@@ -147,40 +160,38 @@ public class BossController : MonoBehaviour
             sr.flipX = false;
         }
         
-        // Mover em direção ao jogador
+        // Animação de movimentação
+        if (animator != null)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        
+        // Movimento baseado em rampa ou normal
         if (isSlope)
         {
             // Movimento em rampa
             transform.position += moveSpeed * Time.deltaTime * new Vector3(
-                slopeNormalPerp.x * -directionToPlayer.x, 
-                slopeNormalPerp.y * -directionToPlayer.y, 
+                slopeNormalPerp.x * -directionX, 
+                slopeNormalPerp.y * -directionX, 
                 0);
         }
         else
         {
             // Movimento normal
-            transform.position += moveSpeed * Time.deltaTime * new Vector3(
-                directionToPlayer.x, 
-                directionToPlayer.y, 
-                0);
-        }
-        
-        // Atualizar animação
-        if (animator != null)
-        {
-            animator.SetBool("isWalk", true);
+            transform.position += moveSpeed * Time.deltaTime * new Vector3(directionX, 0, 0);
         }
     }
 
     private void CheckAttackRange()
     {
         if (player == null) return;
-
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         
-        if (distanceToPlayer <= attackRange)
+        float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        
+        if (distToPlayer <= attackRange && currentState != BossState.Attack)
         {
-            currentState = State.Attack;
+            currentState = BossState.Attack;
+            Debug.Log("Player no alcance de ataque! Mudando para estado de Ataque");
         }
     }
 
@@ -189,57 +200,47 @@ public class BossController : MonoBehaviour
         isAttacking = true;
         canMove = false;
         
-        // Trigger de animação
         if (animator != null)
         {
+            animator.SetBool("isRunning", false);
             animator.SetTrigger("Attack");
         }
         
-        // Tocar som de ataque
-        if (bossAttackSound != null)
-        {
-            AudioSource.PlayClipAtPoint(bossAttackSound, transform.position);
-        }
-        
-        // Esperar pela animação de preparação do ataque
         yield return new WaitForSeconds(0.5f);
         
-        // Executar o ataque
+        // Executar ataque
         AttackHitbox();
         
-        // Instantiate attack effect if available
-        if (attackEffect != null)
-        {
-            Instantiate(attackEffect, transform.position, Quaternion.identity);
-        }
+        yield return new WaitForSeconds(0.75f);
         
-        // Esperar pela conclusão da animação
-        yield return new WaitForSeconds(0.5f);
-        
-        // Resetar timers e flags
-        attackTimer = 0f;
         isAttacking = false;
         canMove = true;
+        attackTimer = 0f;
         
-        // Voltar a perseguir
-        currentState = State.Track;
+        // CORREÇÃO: Sempre voltar para o estado de perseguição após o ataque
+        currentState = BossState.Track;
+        animator.SetTrigger("Track");
+        animator.SetBool("isRunning", true);
+        Debug.Log("Ataque concluído, voltando a perseguir");
     }
 
     private void AttackHitbox()
     {
-        // Calcular posição do hitbox baseado na direção do jogador
-        Vector2 attackPosition = (Vector2)transform.position;
+        if (player == null) return;
+        
+        // Posição do ataque baseada na direção
+        Vector2 attackPosition = transform.position;
+        
         if (sr.flipX)
         {
-            attackPosition.x -= attackHitboxSize.x / 2;
+            attackPosition.x -= boxSize.x / 2;
         }
         else
         {
-            attackPosition.x += attackHitboxSize.x / 2;
+            attackPosition.x += boxSize.x / 2;
         }
         
-        // Detectar colisões
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPosition, attackHitboxSize, 0);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(attackPosition, boxSize, 0);
         
         foreach (Collider2D collider in colliders)
         {
@@ -249,45 +250,22 @@ public class BossController : MonoBehaviour
                 
                 if (playerController != null && !playerController.invincible && !playerController.isDead)
                 {
-                    // Aplicar força de knockback
-                    Vector2 knockbackDirection = new Vector2(
-                        player.transform.position.x < transform.position.x ? -1 : 1, 
-                        0.5f
-                    ).normalized;
-                    
-                    // Mata o jogador e aplica força
+                    Debug.Log("Player atingido pelo ataque do Boss!");
                     playerController.Dead();
-                    collider.GetComponent<Rigidbody2D>().AddForce(knockbackDirection * 15.0f, ForceMode2D.Impulse);
                     
-                    // Shake na câmera
-                    CameraControl.instance.ShakeCamera(0.3f);
+                    if (collider.transform.position.x <= transform.position.x)
+                    {
+                        collider.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 15.0f, ForceMode2D.Impulse);
+                    }
+                    else
+                    {
+                        collider.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 15.0f, ForceMode2D.Impulse);
+                    }
+                    
+                    CameraControl.instance.ShakeCamera(0.25f);
                 }
             }
         }
-    }
-    
-    private void OnDrawGizmos()
-    {
-        // Desenhar o raio de detecção
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-        
-        // Desenhar o raio de ataque
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        
-        // Desenhar o hitbox de ataque
-        Gizmos.color = Color.magenta;
-        Vector2 attackPosition = (Vector2)transform.position;
-        if (sr != null && sr.flipX)
-        {
-            attackPosition.x -= attackHitboxSize.x / 2;
-        }
-        else
-        {
-            attackPosition.x += attackHitboxSize.x / 2;
-        }
-        Gizmos.DrawWireCube(attackPosition, attackHitboxSize);
     }
     
     private bool SlopeCheck()
@@ -319,5 +297,56 @@ public class BossController : MonoBehaviour
         {
             return false;
         }
+    }
+    
+    // Método para verificar continuamente durante o Update se o player está dentro do alcance de ataque
+    private void LateUpdate()
+    {
+        // Se o boss não estiver atacando, verificar constantemente se está no alcance para atacar
+        if (currentState == BossState.Track && player != null)
+        {
+            float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
+            
+            if (distToPlayer <= attackRange && attackTimer >= attackCooldown)
+            {
+                currentState = BossState.Attack;
+            }
+        }
+        // Se estiver atacando mas o player saiu do alcance, voltar a perseguir
+        else if (currentState == BossState.Attack && !isAttacking && player != null)
+        {
+            float distToPlayer = Vector2.Distance(transform.position, player.transform.position);
+            
+            if (distToPlayer > attackRange)
+            {
+                currentState = BossState.Track;
+                if (animator != null)
+                {
+                    animator.SetBool("isRunning", true);
+                }
+            }
+        }
+    }
+    
+    private void OnDrawGizmos()
+    {
+        // Desenhar o raio de ataque
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        
+        // Desenhar o hitbox de ataque
+        Gizmos.color = Color.magenta;
+        Vector2 attackPosition = transform.position;
+        
+        if (sr != null && sr.flipX)
+        {
+            attackPosition.x -= boxSize.x / 2;
+        }
+        else
+        {
+            attackPosition.x += boxSize.x / 2;
+        }
+        
+        Gizmos.DrawWireCube(attackPosition, boxSize);
     }
 }
