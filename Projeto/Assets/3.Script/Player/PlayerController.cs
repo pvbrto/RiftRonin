@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
                         break;
                 }
 
-                Debug.Log("Background ativo: " + bgName + " | Velocidade do player: " + playerSpeed);
+                // Debug.Log("Background ativo: " + bgName + " | Velocidade do player: " + playerSpeed);
             }
         }
     }
@@ -284,7 +284,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        GameManager.instance.GameOver(0);
+       // GameManager.instance.GameOver(0);
     }
 
     public void LaserDead()
