@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -287,7 +288,11 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        GameManager.instance.GameOver(0);
+        if (SceneManager.GetActiveScene().name == "Boss")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+        // GameManager.instance.GameOver(0);
     }
 
     public void LaserDead()

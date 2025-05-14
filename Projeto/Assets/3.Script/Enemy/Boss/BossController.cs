@@ -210,7 +210,6 @@ public class BossController : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         
-        // Executar ataque
         AttackHitbox();
         
         yield return new WaitForSeconds(0.75f);
@@ -219,18 +218,15 @@ public class BossController : MonoBehaviour
         canMove = true;
         attackTimer = 0f;
         
-        // CORREÇÃO: Sempre voltar para o estado de perseguição após o ataque
         currentState = BossState.Track;
         animator.SetTrigger("Track");
         animator.SetBool("isRunning", true);
-        Debug.Log("Ataque concluído, voltando a perseguir");
     }
 
     private void AttackHitbox()
     {
         if (player == null) return;
         
-        // Posição do ataque baseada na direção
         Vector2 attackPosition = transform.position;
         
         if (sr.flipX)
@@ -252,7 +248,6 @@ public class BossController : MonoBehaviour
                 
                 if (playerController != null && !playerController.invincible && !playerController.isDead)
                 {
-                    Debug.Log("Player atingido pelo ataque do Boss!");
                     playerController.Dead();
                     
                     if (collider.transform.position.x <= transform.position.x)

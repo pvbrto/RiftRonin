@@ -5,7 +5,8 @@ public class FloatingText : MonoBehaviour
 {
     [SerializeField] private GameObject btnMenu;
     [SerializeField] private GameObject btnExit;
-    public float duration = 3f;         // Duração da animação
+    public float duration = 3f;
+    public float height;
 
     private RectTransform rectTransform;
     private float elapsedTime = 0f;
@@ -21,7 +22,7 @@ public class FloatingText : MonoBehaviour
     System.Collections.IEnumerator MoveUp()
     {
         Vector2 startPos = rectTransform.anchoredPosition;
-        Vector2 endPos = startPos + new Vector2(0, 1466);
+        Vector2 endPos = startPos + new Vector2(0, height);
 
         while (elapsedTime < duration)
         {

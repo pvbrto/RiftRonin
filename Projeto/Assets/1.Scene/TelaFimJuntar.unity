@@ -506,7 +506,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -153, y: -125}
+  m_AnchoredPosition: {x: -115, y: -125}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &364474163
@@ -718,8 +718,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1.9676, y: -1470}
-  m_SizeDelta: {x: 837.83, y: 1465.1}
+  m_AnchoredPosition: {x: -0.0000058413, y: -1020}
+  m_SizeDelta: {x: 837.83, y: 1012.8}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1308384433
 MonoBehaviour:
@@ -736,6 +736,7 @@ MonoBehaviour:
   btnMenu: {fileID: 364474161}
   btnExit: {fileID: 2018284472}
   duration: 10
+  height: 1012.8
 --- !u!114 &1308384434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,29 +757,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Enquanto os c\xE9us se partem em trov\xF5es e a tempestade ruge como um
-    animal ferido, Musashi encara o \xFAltimo obst\xE1culo de sua jornada: o Senhor
-    das Fendas, um guerreiro imortal cuja presen\xE7a distorce o pr\xF3prio tempo.
-    A espada de Musashi vibra em sua m\xE3o, n\xE3o apenas com o peso das batalhas
-    passadas, mas com o fardo de uma escolha.\n\nO boss, um antigo general corrompido
-    pela mesma maldi\xE7\xE3o que agora consome Musashi, n\xE3o levanta sua l\xE2mina.
-    Em vez disso, suas palavras cortam com mais for\xE7a que qualquer a\xE7o:\n\n\u2014
-    N\xF3s somos iguais. Dois ecos da mesma maldi\xE7\xE3o. Por que lutar, quando
-    podemos moldar este mundo juntos?\n\nMusashi hesita. Em seu peito, o desejo de
-    vingan\xE7a arde como brasas \u2014 mas h\xE1 algo mais: compreens\xE3o. O \xF3dio
-    o trouxe at\xE9 ali, mas a dor compartilhada o impede de atacar.\n\nEle baixa
-    a espada.\n\nNaquele momento, o c\xE9u, que durante toda a jornada reagia com
-    f\xFAria a cada morte, se silencia. A maldi\xE7\xE3o n\xE3o \xE9 quebrada \u2014
-    ela \xE9 aceita. Musashi e o Senhor das Fendas unem suas for\xE7as, n\xE3o como
-    mestres e disc\xEDpulos, mas como entidades de um novo equil\xEDbrio. O clima
-    do mundo agora dan\xE7a ao comando de sua vontade.\n\nO Jap\xE3o Feudal nunca
-    mais ser\xE1 o mesmo. Vilas inteiras desaparecem nas n\xE9voas, montanhas se
-    erguem onde antes havia rios. O mundo se curva diante dos Ronins da Ruptura,
-    e sob seus olhos atentos, uma nova ordem nasce \u2014 feita n\xE3o de honra ou
-    vingan\xE7a, mas de poder e entendimento sombrio.\n\nMusashi n\xE3o encontrou
-    reden\xE7\xE3o. Mas encontrou prop\xF3sito. E no sil\xEAncio da tempestade, ele
-    finalmente compreendeu: \xE0s vezes, para dominar a maldi\xE7\xE3o, \xE9 preciso
-    se tornar parte dela.\n\n\n\n\n\n\n\n\n\n\n\n\nFIM"
+  m_text: "Musashi abaixa a espada.\n\nNaquele momento, o c\xE9u, que durante toda
+    a jornada reagia com f\xFAria a cada morte, se silencia. A maldi\xE7\xE3o n\xE3o
+    \xE9 quebrada \u2014 ela \xE9 aceita. Musashi e o Senhor das Fendas unem suas
+    for\xE7as, n\xE3o como mestres e disc\xEDpulos, mas como entidades de um novo
+    equil\xEDbrio. O clima do mundo agora dan\xE7a ao comando de sua vontade.\n\nO
+    Jap\xE3o Feudal nunca mais ser\xE1 o mesmo. Vilas inteiras desaparecem nas n\xE9voas,
+    montanhas se erguem onde antes havia rios. O mundo se curva diante dos Ronins
+    da Ruptura, e sob seus olhos atentos, uma nova ordem nasce \u2014 feita n\xE3o
+    de honra ou vingan\xE7a, mas de poder e entendimento sombrio.\n\nMusashi n\xE3o
+    encontrou reden\xE7\xE3o. Mas encontrou prop\xF3sito. E no sil\xEAncio da tempestade,
+    ele finalmente compreendeu: \xE0s vezes, para dominar a maldi\xE7\xE3o, \xE9
+    preciso se tornar\_parte\_dela.\n\n\n\n\n\n\n\n\n\n\n\nFIM"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65019f0ae615c6f4bab5025fd2d9d269, type: 2}
   m_sharedMaterial: {fileID: -8073351970613692263, guid: 65019f0ae615c6f4bab5025fd2d9d269, type: 2}
@@ -1103,7 +1093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: -125}
+  m_AnchoredPosition: {x: 127, y: -125}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2018284474
