@@ -287,7 +287,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        // GameManager.instance.GameOver(0);
+        GameManager.instance.GameOver(0);
     }
 
     public void LaserDead()
@@ -659,7 +659,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             if (attackCoolTime < 0.3f) //  Ÿ   Ұ
