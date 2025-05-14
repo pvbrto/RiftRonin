@@ -5,11 +5,70 @@ using TMPro;
 
 public class Choice : MonoBehaviour
 {
-    public void lutar(){
+    private bool playerCanMoveBefore;
+    private bool playerInvincibleBefore;
+    private bool playerCanReceiveInputBefore;
+    private ChangeCursor cursorController;
+    [SerializeField] private GameObject square;
+    [SerializeField] private GameObject btnJuntar;
+    [SerializeField] private GameObject btnLutar;
+    [SerializeField] private GameObject text;
 
+    private void Start()
+    {
+        cursorController = FindAnyObjectByType<ChangeCursor>();
+        DisableGameplay();
     }
 
-    public void juntar(){
-        
+    private void DisableGameplay()
+    {
+        cursorController.gameObject.SetActive(false);
+
+        // Desabilitar controles do jogador
+        PlayerController player = FindAnyObjectByType<PlayerController>();
+        if (player != null)
+        {
+            // Armazenar estado atual para restaurar depois
+            playerCanMoveBefore = player.canMove;
+            playerCanReceiveInputBefore = player.canReceiveInput; // Nova variável
+            playerInvincibleBefore = player.invincible;
+
+            // Desativar TODAS as entradas e tornar invencível durante o diálogo
+            player.canMove = false;
+            player.canReceiveInput = false; // Desativar todas as entradas
+            player.invincible = true;
+
+        }
     }
-} 
+
+    private void EnableGameplay()
+    {
+        ChangeCursor cursorController = FindAnyObjectByType<ChangeCursor>();
+        cursorController.gameObject.SetActive(true);
+
+        square.SetActive(false);
+
+        btnJuntar.SetActive(false);
+        btnLutar.SetActive(false);
+        text.SetActive(false);
+
+        PlayerController player = FindAnyObjectByType<PlayerController>();
+        if (player != null)
+        {
+            player.canMove = playerCanMoveBefore;
+            player.canReceiveInput = playerCanReceiveInputBefore;
+            player.invincible = playerInvincibleBefore;
+        }
+    }
+
+    public void lutar()
+    {
+        Debug.Log("apertou");
+        EnableGameplay();
+    }
+
+    public void juntar()
+    {
+        EnableGameplay();
+    }
+}

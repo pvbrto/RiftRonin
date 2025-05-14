@@ -73,6 +73,9 @@ public class PlayerController : MonoBehaviour
     private bool nearfogueira = false;  // Verifica se o jogador está perto de uma fogueira
     [SerializeField] private float fogueiraRestoreSpeed = 10.0f;  // Velocidade restaurada perto da fogueira
 
+    [Header("Dialog Control")]
+    public bool canReceiveInput = true;
+
     // Components
     private Animator animator;
     private Rigidbody2D rb;
@@ -100,11 +103,11 @@ public class PlayerController : MonoBehaviour
         UpdateStatus();
         SetSpeedBasedOnBackground();
 
-        if (nearfogueira && nevando) 
+        if (nearfogueira && nevando)
         {
             playerSpeed = fogueiraRestoreSpeed;
         }
-        else 
+        else
         {
             // Aplica a desaceleração gradual na neve
             if (nevando)  // Checa se o jogador está na neve
@@ -284,7 +287,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-       // GameManager.instance.GameOver(0);
+        // GameManager.instance.GameOver(0);
     }
 
     public void LaserDead()
@@ -314,7 +317,7 @@ public class PlayerController : MonoBehaviour
         Destroy(laserHit, 2.5f);
 
         laserHitps.GetComponent<ParticleSystem>().Play();
-        
+
         yield return new WaitForSeconds(3.0f);
 
         //GameManager.instance.GameOver(0);
@@ -484,7 +487,7 @@ public class PlayerController : MonoBehaviour
 
     private void GetInputToMove()
     {
-        if (!canMove)
+        if (!canReceiveInput || !canMove)
         {
             return;
         }
@@ -612,7 +615,7 @@ public class PlayerController : MonoBehaviour
             // [ ̵ ]
             if (isGround && !isSlope) // ̵
             {
-                transform.position += playerSpeed * Time.deltaTime * new Vector3(x, 0, 0); 
+                transform.position += playerSpeed * Time.deltaTime * new Vector3(x, 0, 0);
             }
             else if (isGround && isSlope) // ο ̵
             {
@@ -620,7 +623,7 @@ public class PlayerController : MonoBehaviour
             }
             else // ߿ ̵
             {
-                transform.position += 0.5f * playerSpeed * Time.deltaTime * new Vector3(x, 0, 0); 
+                transform.position += 0.5f * playerSpeed * Time.deltaTime * new Vector3(x, 0, 0);
             }
         }
         else if (timeBetweenInput > 0.125f)
@@ -652,6 +655,11 @@ public class PlayerController : MonoBehaviour
 
     private void GetMouseInput()
     {
+        if (!canReceiveInput)
+        {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             if (attackCoolTime < 0.3f) //  Ÿ   Ұ
@@ -680,7 +688,7 @@ public class PlayerController : MonoBehaviour
 
             animator.SetTrigger("Attack");
             AttackHitbox(targetPosition);
-            
+
             GameObject slashEffect = Instantiate(slashPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angleZ)));
             slashEffect.transform.SetParent(gameObject.transform);
             Destroy(slashEffect, 0.3f);
@@ -742,24 +750,24 @@ public class PlayerController : MonoBehaviour
 
                 collider.GetComponent<GruntController>().Dead(transform.position);
             }
-           /* else if (collider.CompareTag("Gangster"))
-            {
-                if (collider.GetComponent<GangsterController>().currentState == State.Dead)
-                {
-                    return;
-                }
+            /* else if (collider.CompareTag("Gangster"))
+             {
+                 if (collider.GetComponent<GangsterController>().currentState == State.Dead)
+                 {
+                     return;
+                 }
 
-                CameraControl.instance.ShakeCamera(0.15f);
+                 CameraControl.instance.ShakeCamera(0.15f);
 
-                GameObject line = Instantiate(linePrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angleZ)));
-                Destroy(line, 0.1f);
+                 GameObject line = Instantiate(linePrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, angleZ)));
+                 Destroy(line, 0.1f);
 
-                collider.GetComponent<GangsterController>().Dead(transform.position);
-            }
-            else if (collider.CompareTag("Door"))
-            {
-                collider.GetComponent<DoorControl>().OpenDoor();
-            }*/
+                 collider.GetComponent<GangsterController>().Dead(transform.position);
+             }
+             else if (collider.CompareTag("Door"))
+             {
+                 collider.GetComponent<DoorControl>().OpenDoor();
+             }*/
         }
     }
 
@@ -804,7 +812,7 @@ public class PlayerController : MonoBehaviour
         isSlope = SlopeCheck();
 
         if (isGround)
-        { 
+        {
             attackCount = 0;
         }
 
@@ -845,7 +853,7 @@ public class PlayerController : MonoBehaviour
                     ps.GetComponent<RunParticle>().Particle_On(1, false);
                 }
             }
-            
+
         }
 
         animator.SetBool("isFall", FallCheck());
@@ -922,7 +930,7 @@ public class PlayerController : MonoBehaviour
             Debug.DrawRay(slopeHit.point, slopeNormalPerp, Color.red);
             Debug.DrawRay(slopeHit.point, slopeHit.normal, Color.green);
         }
-        else if(temp)
+        else if (temp)
         {
             return false;
         }

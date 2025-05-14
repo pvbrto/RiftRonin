@@ -19,6 +19,8 @@ public class Dialog : MonoBehaviour
 
     private void Start()
     {
+        btnJuntar.SetActive(false);
+        btnLutar.SetActive(false);
         // Guarda o texto completo e mostra o texto em japonês
         fullText = titleText.text;
         titleText.text = japaneseText;
@@ -52,13 +54,5 @@ public class Dialog : MonoBehaviour
 
         btnJuntar.SetActive(true);
         btnLutar.SetActive(true);
-    }
-
-    public void lutar(){
-
-    }
-
-    public void juntar(){
-        
     }
 } 
