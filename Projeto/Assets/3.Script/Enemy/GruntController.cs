@@ -15,6 +15,7 @@ public class GruntController : MonoBehaviour
 {
     [Header("State")]
     public State currentState;
+    [SerializeField] private bool enablePatrol = true;
     private int direction = 1;
     private bool canMove = true;
     private bool playerOut = false;
@@ -106,7 +107,10 @@ public class GruntController : MonoBehaviour
             else
             {
                 timer = 0;
-                currentState = State.Patrol;
+                if (enablePatrol)
+                {
+                    currentState = State.Patrol;
+                }
             }
         }
 

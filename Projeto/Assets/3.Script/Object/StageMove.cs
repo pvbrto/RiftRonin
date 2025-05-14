@@ -48,6 +48,10 @@ public class StageMove : MonoBehaviour
             {
                 SceneManager.LoadScene("Cena2");
             }
+            if (SceneManager.GetActiveScene().name == "Cena2")
+            {
+                SceneManager.LoadScene("Cena3");
+            }
         }
     }
 }
