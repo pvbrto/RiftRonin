@@ -31,7 +31,6 @@ public class Dialog : MonoBehaviour
 
     private IEnumerator AnimateText()
     {
-        // Espera o delay inicial
         yield return new WaitForSeconds(delayBeforeStart);
 
         // Para cada caractere do texto em português

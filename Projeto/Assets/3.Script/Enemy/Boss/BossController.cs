@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum BossState
 {
@@ -38,6 +39,8 @@ public class BossController : MonoBehaviour
     [Header("LayerMask")]
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask slopeMask;
+    [SerializeField] private GameObject animObj;
+    [SerializeField] private Animator anim;
 
     // Slope
     private RaycastHit2D slopeHit;
@@ -56,6 +59,7 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
+        sr.flipX = true;
         // Encontrar o jogador
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
@@ -248,6 +252,7 @@ public class BossController : MonoBehaviour
                 
                 if (playerController != null && !playerController.invincible && !playerController.isDead)
                 {
+                    StartCoroutine(StartTransition());
                     playerController.Dead();
                     
                     if (collider.transform.position.x <= transform.position.x)
@@ -263,6 +268,13 @@ public class BossController : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator StartTransition(){
+        animObj.SetActive(true);
+        // anim.SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("TelaFimLutar");
     }
     
     private bool SlopeCheck()

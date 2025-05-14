@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FloatingText : MonoBehaviour
@@ -37,5 +38,13 @@ public class FloatingText : MonoBehaviour
         yield return new WaitForSeconds(1);
         btnMenu.SetActive(true);
         btnExit.SetActive(true);
+    }
+
+    public void Menu(){
+        SceneManager.LoadScene("Menu");
+    }
+    
+    public void Exit(){
+        SceneManager.LoadScene("Menu");
     }
 }

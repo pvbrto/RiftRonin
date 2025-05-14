@@ -290,7 +290,9 @@ public class PlayerController : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Boss")
         {
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("TelaFimLutar");
+        }else{
+            SceneManager.LoadScene("Menu");
         }
         // GameManager.instance.GameOver(0);
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Choice : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Choice : MonoBehaviour
     [SerializeField] private GameObject btnJuntar;
     [SerializeField] private GameObject btnLutar;
     [SerializeField] private GameObject text;
+    [SerializeField] private GameObject animObj;
+    [SerializeField] private Animator anim;
 
     private void Start()
     {
@@ -63,12 +66,19 @@ public class Choice : MonoBehaviour
 
     public void lutar()
     {
-        Debug.Log("apertou");
         EnableGameplay();
     }
 
     public void juntar()
     {
-        EnableGameplay();
+        // EnableGameplay();
+        StartCoroutine(StartTransition());
+    }
+
+    IEnumerator StartTransition(){
+        animObj.SetActive(true);
+        // anim.SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("TelaFimLutar");
     }
 }
