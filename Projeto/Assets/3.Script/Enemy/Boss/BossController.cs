@@ -72,6 +72,8 @@ public class BossController : MonoBehaviour
         {
             alert.SetActive(false);
         }
+
+        // ActivateBoss();
     }
 
     private void Update()
